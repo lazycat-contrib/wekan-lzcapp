@@ -1,0 +1,51 @@
+lzc-sdk-version: "0.1"
+name: WeKan
+package: cloud.lazycat.app.wekan
+version: 7.8.4
+description: 开源看板应用
+homepage: https://github.com/wekan/wekan
+author: wekan
+application:
+  subdomain: wekan
+  background_task: true
+  multi_instance: false
+  gpu_accel: false
+  kvm_accel: false
+  usb_accel: false
+  public_path:
+    - /
+  routes:
+    - /=http://wekan:8080/
+services:
+  wekandb:
+    image: docker.hlmirror.com/mongo:7
+    command: mongod --logpath /dev/null --oplogSize 128 --quiet
+    binds:
+      - /lzcapp/var/db:/data/db
+      - /lzcapp/var/dump:/dump
+    health_check:
+        test:
+          - CMD-SHELL
+          - mongosh --eval  "db.adminCommand('ping')"
+        start_period: 30s       
+        
+  wekan:
+    image: docker.hlmirror.com/wekanteam/wekan:v7.84
+    environment:
+      - WRITABLE_PATH=/data
+      - MONGO_URL=mongodb://wekandb:27017/wekan
+      - ROOT_URL=https://${LAZYCAT_APP_DOMAIN}
+      - MAIL_URL=smtp://<mail_url>:25/?ignoreTLS
+      - MAIL_FROM=Wekan Notifications <noreply.wekan@mydomain.com>
+      - WITH_API=true
+      - RICHER_CARD_COMMENT_EDITOR=false
+      - CARD_OPENED_WEBHOOK_ENABLED=false
+      - BIGEVENTS_PATTERN=NONE
+      - BROWSER_POLICY_ENABLED=true
+      - LDAP_BACKGROUND_SYNC_INTERVAL=''
+    depends_on:
+      - wekandb
+    binds:
+      - /lzcapp/var/data:/data
+    setup_script: |
+        chown --recursive wekan:wekan /data

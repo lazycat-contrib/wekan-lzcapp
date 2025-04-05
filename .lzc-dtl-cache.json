@@ -1,0 +1,44 @@
+{
+  "name": "WeKan",
+  "package": "cloud.lazycat.app.wekan",
+  "description": "开源看板应用",
+  "homepage": "https://github.com/wekan/wekan",
+  "author": "wekan",
+  "app_features": [
+    "background_task",
+    "public_path"
+  ],
+  "subdomain": "wekan",
+  "version": "7.8.4",
+  "public_paths": [
+    "/"
+  ],
+  "iconPath": "icon.png",
+  "composePath": "docker-compose.yml",
+  "unsupported_platforms": [],
+  "lastRouteType": "from_compose",
+  "port_mappings": {
+    "wekan_80_8080": {
+      "use": true,
+      "type": "http",
+      "path": "/",
+      "targetPath": "/"
+    }
+  },
+  "image_mongo_6": {
+    "originalImage": "mongo:6",
+    "pushTarget": "none"
+  },
+  "wekandb_volume_/etc/localtime_action": "useContent",
+  "wekandb_volume_wekan-db_/data/db_action": "emptyDir",
+  "wekandb_volume_/data/db_location": "app_data",
+  "wekandb_volume_wekan-db-dump_/dump_action": "emptyDir",
+  "wekandb_volume_/dump_location": "app_data",
+  "image_ghcr.io_wekan_wekan_latest": {
+    "originalImage": "ghcr.io/wekan/wekan:latest",
+    "pushTarget": "none"
+  },
+  "wekan_volume_/etc/localtime_action": "useContent",
+  "wekan_volume_wekan-files_/data_action": "emptyDir",
+  "wekan_volume_/data_location": "app_data"
+}
