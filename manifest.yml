@@ -1,10 +1,3 @@
-lzc-sdk-version: "0.1"
-name: WeKan
-package: cloud.lazycat.app.wekan
-version: 7.8.4
-description: 开源看板应用
-homepage: https://github.com/wekan/wekan
-author: wekan
 application:
   subdomain: wekan
   background_task: true
@@ -18,18 +11,20 @@ application:
     - /=http://wekan:8080/
 services:
   wekandb:
+    # upstream: mongo:7
     image: docker.hlmirror.com/mongo:7
     command: mongod --logpath /dev/null --oplogSize 128 --quiet
     binds:
       - /lzcapp/var/db:/data/db
       - /lzcapp/var/dump:/dump
-    health_check:
-        test:
-          - CMD-SHELL
-          - mongosh --eval  "db.adminCommand('ping')"
-        start_period: 30s       
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - mongosh --eval "db.adminCommand('ping')"
+      start_period: 30s
         
   wekan:
+    # upstream: ghcr.io/wekan/wekan:v7.84
     image: docker.hlmirror.com/wekanteam/wekan:v7.84
     environment:
       - WRITABLE_PATH=/data
