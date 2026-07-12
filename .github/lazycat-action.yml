@@ -31,6 +31,8 @@ images:
     channel: custom
     tag_regex: '^7$'
     sort: created
+    version_regex: '^(?P<version>7)$'
+    version_template: '{version}.0.0'
     delivery:
       mode: lazycat
 stores:
@@ -42,4 +44,3 @@ stores:
     skip_if_version_exists: true
     name: WeKan
     summary: 开源、可自托管的协作看板应用
-
