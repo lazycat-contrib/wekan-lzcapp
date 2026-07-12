@@ -1,11 +1,10 @@
 package: cloud.lazycat.app.wekan
-version: 7.8.4
+version: 9.8.7
 name: WeKan
 description: "开源看板应用"
 min_os_version: 1.5.0
 homepage: https://github.com/wekan/wekan
 author: wekan
-
 locales:
   zh:
     name: "WeKan"
@@ -13,4 +12,3 @@ locales:
   en:
     name: "WeKan"
     description: "An open-source, self-hosted collaborative kanban application"
-
