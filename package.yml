@@ -1,5 +1,5 @@
 package: cloud.lazycat.app.wekan
-version: 9.8.7
+version: 9.8.9
 name: WeKan
 description: "开源看板应用"
 min_os_version: 1.5.0
