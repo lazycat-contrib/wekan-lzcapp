@@ -12,7 +12,7 @@ application:
 services:
   wekandb:
     # upstream: mongo:7
-    image: registry.lazycat.cloud/czyt/library/mongo:bfb8cdaad9baa31a
+    image: registry.lazycat.cloud/czyt/library/mongo:ad164c12cd5f4549
     command: mongod --logpath /dev/null --oplogSize 128 --quiet
     binds:
       - /lzcapp/var/db:/data/db
@@ -23,8 +23,8 @@ services:
         - mongosh --eval "db.adminCommand('ping')"
       start_period: 30s
   wekan:
-    # upstream: ghcr.io/wekan/wekan:v11.53
-    image: registry.lazycat.cloud/czyt/wekan/wekan:784688a86d55b285
+    # upstream: ghcr.io/wekan/wekan:v11.66
+    image: registry.lazycat.cloud/czyt/wekan/wekan:af5b4f7c9d131cca
     environment:
       - WRITABLE_PATH=/data
       - MONGO_URL=mongodb://wekandb:27017/wekan
