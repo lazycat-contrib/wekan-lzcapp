@@ -1,4 +1,5 @@
 package: cloud.lazycat.app.wekan
+license: MIT
 version: 12.2.2
 name: WeKan
 description: "开源看板应用"
