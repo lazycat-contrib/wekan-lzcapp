@@ -23,8 +23,8 @@ services:
         - mongosh --eval "db.adminCommand('ping')"
       start_period: 30s
   wekan:
-    # upstream: ghcr.io/wekan/wekan:v12.52
-    image: registry.lazycat.cloud/czyt/wekan/wekan:b443f17a4a28ba62
+    # upstream: ghcr.io/wekan/wekan:v12.55
+    image: registry.lazycat.cloud/czyt/wekan/wekan:711fd8f530903cb7
     environment:
       - WRITABLE_PATH=/data
       - MONGO_URL=mongodb://wekandb:27017/wekan
