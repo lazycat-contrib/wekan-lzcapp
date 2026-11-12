@@ -12,7 +12,7 @@ application:
 services:
   wekandb:
     # upstream: mongo:7
-    image: registry.lazycat.cloud/czyt/library/mongo:34c68407061b43d6
+    image: registry.lazycat.cloud/czyt/library/mongo:328e45f8351f76de
     command: mongod --logpath /dev/null --oplogSize 128 --quiet
     binds:
       - /lzcapp/var/db:/data/db
